@@ -109,4 +109,25 @@ app.post('/login', (request, response) => {
 })
 
 
-app.listen(3000);
+if (process.env.NODE_ENV === "production") {
+    const privateKey = fs.readFileSync('/etc/letsencrypt/live/cresus.top/privkey.pem', 'utf8');
+    const certificate = fs.readFileSync('/etc/letsencrypt/live/cresus.top/cert.pem', 'utf8');
+    const ca = fs.readFileSync('/etc/letsencrypt/live/cresus.top/chain.pem', 'utf8');
+    const credentials = {
+        key: privateKey,
+        cert: certificate,
+        ca: ca
+    };
+
+    https.createServer(credentials, app).listen(443, () => {
+        console.log('HTTPS Server running on port 443');
+    });
+    http.createServer(function (req, res) {
+        res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+        res.end();
+    }).listen(80);
+} else if (process.env.NODE_ENV === "development") {
+    app.listen(9000);
+} else {
+    app.listen(9000);
+}
