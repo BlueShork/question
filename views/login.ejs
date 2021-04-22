@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/assets/semantic/semantic.min.css">
+        <title>Login</title>
+    </head>
+    <body>
+        <style>
+            .main.container{
+                margin-top: 7em;
+            }
+        </style>
+        
+        <div class="ui main container">
+                <% if(locals.flash && locals.flash.error){ %>
+                    <div class="ui negative message">
+                        <p><%= flash.error%></p>
+                    </div>
+                <%}%>
+            <h2>Login</h2>
+            <form action="/login" method="post" class="ui form">
+                
+                <div class="field">
+                    <label for="login">Email</label>
+                    <input type="email" name="email">
+                    <label for="Register">Mot de passe</label>
+                    <input type="password" name="password">
+                </div>
+                <button type="submit" class="ui blue labeled submit icon button">
+                    <i class="icon send"></i>
+                    Envoyer
+                </button>
+            </form>
+        </div>
+    </body>
+</html>

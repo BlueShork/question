@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/assets/semantic/semantic.min.css">
+        <title>USERS</title>
+    </head>
+    <body>
+        <style>
+            .main.container{
+                margin-top: 7em;
+            }
+        </style>
+        <div class="ui main container">
+           <h2>Users list</h2>
+           <% for (users_info of user){ %>
+
+
+            <p><%= users_info.email %></p>
+            <p><%= users_info.password %></p>
+
+
+
+           <% } %>
+        </div>
+    </body>
+</html>
