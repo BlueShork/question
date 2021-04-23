@@ -1,4 +1,4 @@
-let mysql = require('mysql');
+let mysql = require('mysql2');
 let connection = require('../config/db');
 let bcrypt = require('bcrypt');
 let saltRounds = 10;
