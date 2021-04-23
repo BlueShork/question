@@ -1,18 +1,19 @@
 let express = require('express');
 let bodyParser = require('body-parser');
 let session = require('express-session');
+let path = require('path');
 
 
 let app = express();
 
 
 app.set('view engine', 'ejs');
-
+app.set('views', 'view');
 // Middleware
 
 
 
-app.use('/assets/', express.static('public'));
+app.use('/assets/', express.static(path.join(__dirname), '/public'));
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -34,7 +35,7 @@ app.get('/', (request, response) => {
     
     
     console.log("Page d'accueil");
-    response.render('index.ejs');
+    response.render(path.join(__dirname, 'views/index.ejs'));
     console.log(request.session);
 
 
